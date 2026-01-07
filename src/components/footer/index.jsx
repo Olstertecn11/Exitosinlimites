@@ -34,7 +34,7 @@ export default function Footer() {
               objectFit="contain"
             />
 
-            <Text maxW="360px" fontSize="sm" lineHeight="1.8" color="whiteAlpha.900">
+            <Text maxW="360px" fontSize="sm" lineHeight="1.8" color="whiteAlpha.900" textAlign='justify'>
               Impulsar a personas y organizaciones a descubrir y desarrollar su
               máximo potencial, a través del coaching personal, grupal y
               conferencias transformadoras.

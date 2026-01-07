@@ -24,7 +24,7 @@ export default function About({ NavbarComponent }) {
   return (
     <div>
 
-      <Box bg="#F3F7FB">
+      <Box bg="#F3F7FB" position='relative'>
         {/* HERO / BANNER SUPERIOR */}
         <Box
           bgImage={HERO_BG ? `url(${HERO_BG})` : undefined}

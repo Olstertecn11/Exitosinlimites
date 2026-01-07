@@ -8,7 +8,16 @@ import {
   Divider,
   VStack,
   Button,
+  Menu, MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
 } from "@chakra-ui/react";
+
+import { FaAngleDown } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
@@ -49,10 +58,56 @@ export default function Navbar() {
         <HStack spacing={8} fontWeight="600">
           <Text onClick={() => redirect('/')} cursor="pointer">Inicio</Text>
           <Text onClick={() => redirect('/acerca-de-nosotros')} cursor="pointer">Acerca de nosotros</Text>
-          <Text onClick={() => redirect('/servicios')} cursor="pointer">Servicios</Text>
-          <Text cursor="pointer">Comercio</Text>
-          <Text cursor="pointer">Blogs</Text>
-          <Text cursor="pointer">Contacto</Text>
+          <Menu>
+            <MenuButton
+              as={Button}
+              rightIcon={<FaAngleDown />}
+              bg="transparent"
+              _expanded={{ bg: "transparent" }}
+              _focus={{ boxShadow: "none" }}
+            >
+              Servicios
+            </MenuButton>
+
+            <MenuList
+              bg="#00000017"
+              backdropFilter="blur(10px) brightness(0.75)"
+              border="none"
+              zIndex={10}
+            >
+              <MenuItem
+                bg="transparent"
+                _hover={{ bg: "#37536a" }}
+                _focus={{ bg: "#37536a" }}
+                onClick={() => redirect('/servicios/conferencias-alto-impacto')}
+              >
+                Conferencias de alto impacto
+              </MenuItem>
+
+              <MenuItem
+                bg="transparent"
+                _hover={{ bg: "#37536a" }}
+                _focus={{ bg: "#37536a" }}
+                onClick={() => redirect('/servicios/entrenamiento-personal')}
+              >
+                Entrenamiento personal
+              </MenuItem>
+
+              <MenuItem
+                bg="transparent"
+                _hover={{ bg: "#37536a" }}
+                _focus={{ bg: "#37536a" }}
+              >
+                Motivación y liderazgo
+              </MenuItem>
+            </MenuList>
+          </Menu>
+          {
+            // <Text cursor="pointer">Comercio</Text>
+            // <Text cursor="pointer">Blogs</Text>
+          }
+          <Text cursor="pointer"
+            onClick={() => redirect('/contacto')}>Contacto</Text>
         </HStack>
 
         {/* PHONE SECTION */}
