@@ -1,4 +1,3 @@
-// TopBar.tsx
 import {
   Box,
   Flex,
@@ -14,47 +13,55 @@ import { FaTwitter, FaFacebookF, FaInstagram, FaPinterestP } from "react-icons/f
 
 export default function TopBar() {
   return (
-    <Box bg="#003452" color="white" fontSize="sm" h="60px">
+    <Box bg="#003452" color="white" fontSize="xs" h={{ base: "auto", md: "60px" }} py={{ base: 2, md: 0 }}>
       <Flex
         maxW="1200px"
         h="full"
         mx="auto"
         align="center"
         px={4}
+        flexDir={{ base: "column", md: "row" }} // Columna en móvil, fila en desktop
+        gap={{ base: 2, md: 0 }}
       >
-        {/* Lado izquierdo */}
-        <HStack spacing={3}>
+        {/* Lado izquierdo - Info de contacto */}
+        <HStack spacing={4} justify={{ base: "center", md: "flex-start" }} w={{ base: "full", md: "auto" }}>
           <HStack spacing={1}>
-            <Icon as={FiCheck} boxSize={4} />
-            <Text>Reading PA</Text>
+            <Icon as={FiCheck} boxSize={3} color="cyan.400" />
+            <Text fontWeight="medium">Reading PA</Text>
           </HStack>
 
-          <HStack spacing={1}>
-            <Icon as={FiMail} boxSize={4} />
+          {/* El email se oculta en móviles muy pequeños para ahorrar espacio */}
+          <HStack spacing={1} display={{ base: "none", sm: "flex" }}>
+            <Icon as={FiMail} boxSize={3} color="cyan.400" />
             <Text>caguzman000@gmail.com</Text>
           </HStack>
         </HStack>
 
-        <Spacer />
+        <Spacer display={{ base: "none", md: "block" }} />
 
-        {/* Lado derecho */}
-        <HStack spacing={3}>
-          <IconButton
-            aria-label="Buscar"
-            icon={<FiSearch />}
-            variant="ghost"
-            size="sm"
-            _hover={{ bg: "whiteAlpha.200" }}
-          />
-
-          <HStack spacing={1}>
-            <Icon as={FiShoppingCart} boxSize={5} />
-            <Text fontSize="xs">0</Text>
+        {/* Lado derecho - Acciones y Redes */}
+        <HStack spacing={3} justify="center" w={{ base: "full", md: "auto" }}>
+          {/* Carrito y Buscar */}
+          <HStack spacing={3}>
+            <IconButton
+              aria-label="Buscar"
+              icon={<FiSearch />}
+              variant="ghost"
+              size="sm"
+              _hover={{ bg: "whiteAlpha.200" }}
+            />
+            <HStack spacing={1} cursor="pointer">
+              <Icon as={FiShoppingCart} boxSize={4} />
+              <Box bg="red.500" borderRadius="full" px={1.5} fontSize="10px" fontWeight="bold">
+                0
+              </Box>
+            </HStack>
           </HStack>
 
           <Divider orientation="vertical" borderColor="whiteAlpha.500" h="18px" />
 
-          <HStack spacing={2}>
+          {/* Redes Sociales - Ajustamos el espaciado en móvil */}
+          <HStack spacing={{ base: 0, md: 1 }}>
             <IconButton
               aria-label="Twitter"
               icon={<FaTwitter />}
