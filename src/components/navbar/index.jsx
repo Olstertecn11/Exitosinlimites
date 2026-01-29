@@ -203,6 +203,7 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 justifyContent="flex-start"
+                color="white"
                 onClick={() => {
                   mobile.onClose();
                   redirect("/");
@@ -214,6 +215,7 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 justifyContent="flex-start"
+                color="white"
                 onClick={() => {
                   mobile.onClose();
                   redirect("/acerca-de-nosotros");
@@ -227,6 +229,7 @@ export default function Navbar() {
                 variant="ghost"
                 justifyContent="space-between"
                 rightIcon={<FaAngleDown />}
+                color="white"
                 onClick={servicesCollapse.onToggle}
               >
                 Servicios
@@ -237,6 +240,7 @@ export default function Navbar() {
                   <Button
                     variant="ghost"
                     justifyContent="flex-start"
+                    color="white"
                     w="full"
                     onClick={() => {
                       mobile.onClose();
@@ -249,6 +253,7 @@ export default function Navbar() {
                   <Button
                     variant="ghost"
                     justifyContent="flex-start"
+                    color="white"
                     w="full"
                     onClick={() => {
                       mobile.onClose();
@@ -262,6 +267,7 @@ export default function Navbar() {
                     variant="ghost"
                     justifyContent="flex-start"
                     w="full"
+                    color="white"
                     onClick={() => {
                       mobile.onClose();
                       redirect("/servicios/motivacion&liderazgo");
@@ -275,6 +281,7 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 justifyContent="flex-start"
+                color="white"
                 onClick={() => {
                   mobile.onClose();
                   redirect("/contacto");

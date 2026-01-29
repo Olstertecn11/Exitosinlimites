@@ -63,7 +63,8 @@ const books = [
 
 export default function BooksSection() {
   return (
-    <Box as="section" py={{ base: 16, md: 20 }} bg="white">
+    <Box as="section" py={{ base: 16, md: 20 }} bg="white"
+    >
       {/* Título */}
       <VStack spacing={3} textAlign="center" mb={10}>
         <HStack spacing={2}>
@@ -90,7 +91,7 @@ export default function BooksSection() {
             <Box
               key={book.id}
               bg="white"
-              boxShadow="0 18px 40px rgba(15, 23, 42, 0.10)"
+              boxShadow="8px 18px 40px rgba(15, 23, 42, 0.20)"
               borderRadius="md"
               overflow="hidden"
             >

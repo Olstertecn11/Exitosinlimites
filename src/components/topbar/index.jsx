@@ -47,6 +47,7 @@ export default function TopBar() {
               aria-label="Buscar"
               icon={<FiSearch />}
               variant="ghost"
+              color="white"
               size="sm"
               _hover={{ bg: "whiteAlpha.200" }}
             />
@@ -66,6 +67,7 @@ export default function TopBar() {
               aria-label="Twitter"
               icon={<FaTwitter />}
               variant="ghost"
+              color="white"
               size="sm"
               _hover={{ bg: "whiteAlpha.200" }}
             />
@@ -73,6 +75,7 @@ export default function TopBar() {
               aria-label="Facebook"
               icon={<FaFacebookF />}
               variant="ghost"
+              color="white"
               size="sm"
               _hover={{ bg: "whiteAlpha.200" }}
             />
@@ -80,6 +83,7 @@ export default function TopBar() {
               aria-label="Instagram"
               icon={<FaInstagram />}
               variant="ghost"
+              color="white"
               size="sm"
               _hover={{ bg: "whiteAlpha.200" }}
             />
@@ -87,6 +91,7 @@ export default function TopBar() {
               aria-label="Pinterest"
               icon={<FaPinterestP />}
               variant="ghost"
+              color="white"
               size="sm"
               _hover={{ bg: "whiteAlpha.200" }}
             />
