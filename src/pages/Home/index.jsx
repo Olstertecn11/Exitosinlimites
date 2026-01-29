@@ -39,14 +39,14 @@ export default function Home({ NavbarComponent }) {
           {/* Contenido principal del hero */}
           <Flex
             position="relative"
-            zIndex={2}
+            zIndex={0}
             maxW="1200px"
             mx="auto"
             px={{ base: 4, md: 8 }}
             minH="calc(100vh - 100px)"
             align="center"
           >
-            <Box maxW={{ base: "100%", md: "600px" }}>
+            <Box maxW={{ base: "100%", md: "600px" }} >
               <Heading
                 as="h1"
                 fontSize='4.2rem'

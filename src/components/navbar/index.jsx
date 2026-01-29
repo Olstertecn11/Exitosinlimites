@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Flex,
@@ -8,34 +9,47 @@ import {
   Divider,
   VStack,
   Button,
-  Menu, MenuButton,
+  IconButton,
+  Menu,
+  MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
+  useDisclosure,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerCloseButton,
+  Stack,
+  Collapse,
 } from "@chakra-ui/react";
 
 import { FaAngleDown } from "react-icons/fa";
-import { FiPhoneCall } from "react-icons/fi";
+import { FiPhoneCall, FiMenu } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const mobile = useDisclosure();
+  const servicesCollapse = useDisclosure();
 
-  const history = useNavigate();
+  const redirect = (path) => navigate(path);
 
-  const redirect = (path) => {
-    history(path);
+  // estilos reutilizables
+  const linkStyle = {
+    cursor: "pointer",
+    _hover: { opacity: 0.9 },
+    userSelect: "none",
   };
-
 
   return (
     <Box
       position="relative"
       w="100%"
-      zIndex="100"
+      zIndex={2000} // 🔥 alto para que quede encima del hero
       bg="transparent"
+      pointerEvents="auto" // 🔥 importante si el padre trae overlay raro
     >
       <Flex
         maxW="1200px"
@@ -43,7 +57,7 @@ export default function Navbar() {
         align="center"
         justify="space-between"
         h="80px"
-        px={6}
+        px={{ base: 4, md: 6 }}
         color="white"
       >
         {/* LOGO */}
@@ -52,69 +66,98 @@ export default function Navbar() {
           alt="logo"
           h="55px"
           objectFit="contain"
+          cursor="pointer"
+          onClick={() => redirect("/")}
         />
 
-        {/* MENU */}
-        <HStack spacing={8} fontWeight="600">
-          <Text onClick={() => redirect('/')} cursor="pointer">Inicio</Text>
-          <Text onClick={() => redirect('/acerca-de-nosotros')} cursor="pointer">Acerca de nosotros</Text>
-          <Menu>
+        {/* DESKTOP MENU */}
+        <HStack spacing={8} fontWeight="600" display={{ base: "none", md: "flex" }}>
+          <Text onClick={() => redirect("/")} {...linkStyle}>
+            Inicio
+          </Text>
+
+          <Text onClick={() => redirect("/acerca-de-nosotros")} {...linkStyle}>
+            Acerca de nosotros
+          </Text>
+
+          <Menu
+            isLazy
+            placement="bottom-start"
+            gutter={10}
+            // 👇 evita problemas de click/focus dentro de overlays
+            closeOnSelect
+          >
             <MenuButton
               as={Button}
               rightIcon={<FaAngleDown />}
               bg="transparent"
+              _hover={{ bg: "transparent" }}
+              _active={{ bg: "transparent" }}
               _expanded={{ bg: "transparent" }}
               _focus={{ boxShadow: "none" }}
+              px={0}
+              fontWeight="600"
             >
               Servicios
             </MenuButton>
 
             <MenuList
-              bg="#00000017"
-              backdropFilter="blur(10px) brightness(0.75)"
-              border="none"
-              zIndex={10}
+              // 🔥 clave: que el list quede encima y clickeable
+              zIndex={9999}
+              bg="rgba(0,0,0,0.35)"
+              backdropFilter="blur(12px) brightness(0.85)"
+              border="1px solid rgba(255,255,255,0.12)"
+              py={2}
+              minW="270px"
             >
               <MenuItem
                 bg="transparent"
-                _hover={{ bg: "#37536a" }}
-                _focus={{ bg: "#37536a" }}
-                onClick={() => redirect('/servicios/conferencias-alto-impacto')}
+                color="white"
+                _hover={{ bg: "rgba(55,83,106,0.85)" }}
+                _focus={{ bg: "rgba(55,83,106,0.85)" }}
+                onClick={() => redirect("/servicios/conferencias-alto-impacto")}
               >
                 Conferencias de alto impacto
               </MenuItem>
 
               <MenuItem
                 bg="transparent"
-                _hover={{ bg: "#37536a" }}
-                _focus={{ bg: "#37536a" }}
-                onClick={() => redirect('/servicios/entrenamiento-personal')}
+                color="white"
+                _hover={{ bg: "rgba(55,83,106,0.85)" }}
+                _focus={{ bg: "rgba(55,83,106,0.85)" }}
+                onClick={() => redirect("/servicios/entrenamiento-personal")}
               >
                 Entrenamiento personal
               </MenuItem>
 
               <MenuItem
                 bg="transparent"
-                _hover={{ bg: "#37536a" }}
-                _focus={{ bg: "#37536a" }}
+                color="white"
+                _hover={{ bg: "rgba(55,83,106,0.85)" }}
+                _focus={{ bg: "rgba(55,83,106,0.85)" }}
+                onClick={() => redirect("/servicios/motivacion&liderazgo")}
               >
                 Motivación y liderazgo
               </MenuItem>
             </MenuList>
           </Menu>
-          {
-            // <Text cursor="pointer">Comercio</Text>
-            // <Text cursor="pointer">Blogs</Text>
-          }
-          <Text cursor="pointer"
-            onClick={() => redirect('/contacto')}>Contacto</Text>
+
+          <Text onClick={() => redirect("/contacto")} {...linkStyle}>
+            Contacto
+          </Text>
         </HStack>
 
-        {/* PHONE SECTION */}
+        {/* PHONE + HAMBURGER */}
         <HStack spacing={4}>
-          <Divider orientation="vertical" borderColor="whiteAlpha.500" />
+          <Divider
+            orientation="vertical"
+            borderColor="whiteAlpha.500"
+            display={{ base: "none", md: "block" }}
+            h="40px"
+          />
 
-          <HStack spacing={3}>
+          {/* phone desktop */}
+          <HStack spacing={3} display={{ base: "none", md: "flex" }}>
             <Flex
               bg="#4DA3FF"
               w="40px"
@@ -127,14 +170,142 @@ export default function Navbar() {
             </Flex>
 
             <VStack spacing={0} align="start" fontSize="sm">
-              <Text>Llama en cualquier momento</Text>
+              <Text opacity={0.9}>Llama en cualquier momento</Text>
               <Text fontWeight="bold">(571) 288-9862</Text>
             </VStack>
           </HStack>
+
+          {/* hamburger mobile */}
+          <IconButton
+            display={{ base: "inline-flex", md: "none" }}
+            aria-label="Abrir menú"
+            icon={<FiMenu />}
+            variant="ghost"
+            color="white"
+            _hover={{ bg: "whiteAlpha.200" }}
+            _active={{ bg: "whiteAlpha.300" }}
+            onClick={mobile.onOpen}
+          />
         </HStack>
       </Flex>
 
       <Box borderBottom="1px solid rgba(255,255,255,.2)" />
+
+      {/* ===== MOBILE DRAWER ===== */}
+      <Drawer isOpen={mobile.isOpen} placement="right" onClose={mobile.onClose} size="xs">
+        <DrawerOverlay />
+        <DrawerContent bg="#0B2E47" color="white">
+          <DrawerCloseButton />
+          <DrawerHeader>Menú</DrawerHeader>
+
+          <DrawerBody>
+            <Stack spacing={2}>
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                onClick={() => {
+                  mobile.onClose();
+                  redirect("/");
+                }}
+              >
+                Inicio
+              </Button>
+
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                onClick={() => {
+                  mobile.onClose();
+                  redirect("/acerca-de-nosotros");
+                }}
+              >
+                Acerca de nosotros
+              </Button>
+
+              {/* Servicios (collapse) */}
+              <Button
+                variant="ghost"
+                justifyContent="space-between"
+                rightIcon={<FaAngleDown />}
+                onClick={servicesCollapse.onToggle}
+              >
+                Servicios
+              </Button>
+
+              <Collapse in={servicesCollapse.isOpen} animateOpacity>
+                <Box pl={4} borderLeft="1px solid rgba(255,255,255,0.15)" ml={2}>
+                  <Button
+                    variant="ghost"
+                    justifyContent="flex-start"
+                    w="full"
+                    onClick={() => {
+                      mobile.onClose();
+                      redirect("/servicios/conferencias-alto-impacto");
+                    }}
+                  >
+                    Conferencias de alto impacto
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    justifyContent="flex-start"
+                    w="full"
+                    onClick={() => {
+                      mobile.onClose();
+                      redirect("/servicios/entrenamiento-personal");
+                    }}
+                  >
+                    Entrenamiento personal
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    justifyContent="flex-start"
+                    w="full"
+                    onClick={() => {
+                      mobile.onClose();
+                      redirect("/servicios/motivacion&liderazgo");
+                    }}
+                  >
+                    Motivación y liderazgo
+                  </Button>
+                </Box>
+              </Collapse>
+
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                onClick={() => {
+                  mobile.onClose();
+                  redirect("/contacto");
+                }}
+              >
+                Contacto
+              </Button>
+
+              <Divider my={4} borderColor="whiteAlpha.300" />
+
+              {/* phone mobile */}
+              <HStack spacing={3}>
+                <Flex
+                  bg="#4DA3FF"
+                  w="40px"
+                  h="40px"
+                  borderRadius="50%"
+                  align="center"
+                  justify="center"
+                >
+                  <Icon as={FiPhoneCall} boxSize={5} />
+                </Flex>
+                <VStack spacing={0} align="start" fontSize="sm">
+                  <Text opacity={0.9}>Llama en cualquier momento</Text>
+                  <Text fontWeight="bold">(571) 288-9862</Text>
+                </VStack>
+              </HStack>
+            </Stack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Box>
   );
 }

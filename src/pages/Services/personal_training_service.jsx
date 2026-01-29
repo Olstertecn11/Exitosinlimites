@@ -63,6 +63,7 @@ export default function PersonalTrainingService({ NavbarComponent }) {
           <HStack
             spacing={4}
             mb={6}
+            mt={'6rem'}
             flexWrap="wrap"
             fontSize="sm"
           >
@@ -137,7 +138,7 @@ export default function PersonalTrainingService({ NavbarComponent }) {
       </Box>
 
       {/* CARD BREADCRUMB */}
-      <Box maxW="1200px" mx="auto" px={{ base: 4, md: 8 }} mt={-8} mb={12}>
+      <Box maxW="1200px" mx="auto" px={{ base: 4, md: 8 }} mt={8} mb={12}>
         <Box
           bg="white"
           borderRadius="md"
@@ -295,8 +296,8 @@ export default function PersonalTrainingService({ NavbarComponent }) {
             <VStack flex="1" spacing={4} align="stretch">
               <FormControl>
                 <FormLabel color='#111827'>Curso de interés</FormLabel>
-                <Select placeholder="Selecciona un curso" border="1px solid #111827" _placeholder={{ color: 'blue.800' }} color='#111827'>
-                  <option color="#111827">Desarrollo y crecimiento personal</option>
+                <Select className="personal_training_contact_select" placeholder="Selecciona un curso" border="1px solid #111827" _placeholder={{ color: 'blue.800' }} background='white' color='#111827'>
+                  <option>Desarrollo y crecimiento personal</option>
                   <option>Cambia tu actitud, transforma tu vida</option>
                   <option>Inteligencia Emocional</option>
                   <option>Fortaleciendo tu autoestima</option>
