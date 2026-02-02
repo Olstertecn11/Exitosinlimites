@@ -90,6 +90,7 @@ export default function Navbar() {
             <MenuButton
               as={Button}
               rightIcon={<FaAngleDown />}
+              color="white"
               bg="transparent"
               _hover={{ bg: "transparent" }}
               _active={{ bg: "transparent" }}
@@ -141,7 +142,9 @@ export default function Navbar() {
               </MenuItem>
             </MenuList>
           </Menu>
-
+          <Text onClick={() => redirect("/contacto")} {...linkStyle}>
+            Eventos
+          </Text>
           <Text onClick={() => redirect("/contacto")} {...linkStyle}>
             Contacto
           </Text>

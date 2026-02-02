@@ -2,12 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import routes from './routes';
 import Layout from '../components/layout';
+import ProtectedRoute from '../auth/ProtectedRoute'
 
 export default function RouterManager() {
   return (
     <Router>
       <Routes>
-        {routes.map((route, index) => (
+        {routes.public.map((route, index) => (
           <Route
             key={index}
             path={route.path}
@@ -19,6 +20,21 @@ export default function RouterManager() {
             index={route.default || false}
           />
         ))}
+        {
+          routes.private?.map((route, index) => {
+            const Page = route.element;
+            const roles = route.roles || ["Administrador"];
+
+            const element = (
+              <ProtectedRoute roles={roles}>
+                <Page />
+              </ProtectedRoute>
+            );
+
+            return <Route key={`adm-${index}`} path={route.path} element={element} />;
+          })
+        }
+
       </Routes>
     </Router>
   );
