@@ -1,11 +1,13 @@
 // src/pages/Home.tsx
-import { Box, Flex, Heading, Text, Button } from "@chakra-ui/react";
+import { SimpleGrid, Box, Flex, Heading, Text, Button } from "@chakra-ui/react";
 import Hero from './hero'
 import ServicesBlock from "./services_block";
 import CtaDivider from './cta_divider'
 import BooksSection from './books_section'
 import AdvertisementSection from "./advertisement-section";
+import EventCard from "../admin/EventCard";
 import ExpertsSection from "./expers_section";
+import EventGallery from './event_gallery'
 
 
 
@@ -88,6 +90,7 @@ export default function Home({ NavbarComponent }) {
       <ServicesBlock />
       <CtaDivider />
       <BooksSection />
+      <EventGallery />
       <AdvertisementSection />
       <ExpertsSection />
     </div>

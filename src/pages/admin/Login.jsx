@@ -48,7 +48,7 @@ export default function GlassLogin() {
     setLoading(true);
     try {
       await login(formData.email, formData.password);
-      nav("/admin/ordenes", { replace: true });
+      nav("/admin/events", { replace: true });
     } catch (err) {
       toast({
         title: "Credenciales inválidas",
