@@ -7,6 +7,9 @@ import Contact from '../pages/Contact';
 
 import GlassLogin from '../pages/admin/Login';
 import EventManager from '../pages/admin/EventManager';
+import BooksManager from '../pages/admin/BooksManager';
+import Sales from '../pages/admin/Sales'
+
 
 
 const routes = {
@@ -22,7 +25,8 @@ const routes = {
     { path: '/admin/login', element: GlassLogin, default: true, navInside: true },
     { path: '/admin/eventos', element: EventManager, default: true, navInside: true },
     { path: '/admin/inscripciones', element: Contact, default: true, navInside: true },
-    { path: '/admin/libros', element: Contact, default: true, navInside: true },
+    { path: '/admin/libros', element: BooksManager, default: true, navInside: true },
+    { path: '/admin/ventas', element: Sales, default: true, navInside: true },
   ]
 };
 

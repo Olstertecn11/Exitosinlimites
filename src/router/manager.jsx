@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import routes from './routes';
 import Layout from '../components/layout';
 import ProtectedRoute from '../auth/ProtectedRoute'
+import AdminNav from '../components/admin/nav';
 
 export default function RouterManager() {
   return (
@@ -27,7 +28,9 @@ export default function RouterManager() {
 
             const element = (
               <ProtectedRoute roles={roles}>
-                <Page />
+                <AdminNav >
+                  <Page />
+                </AdminNav >
               </ProtectedRoute>
             );
 
