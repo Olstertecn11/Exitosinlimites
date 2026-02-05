@@ -28,9 +28,13 @@ export default function RouterManager() {
 
             const element = (
               <ProtectedRoute roles={roles}>
-                <AdminNav >
-                  <Page />
-                </AdminNav >
+                {
+                  route.navInside ? (
+                    <AdminNav >
+                      <Page />
+                    </AdminNav >
+                  ) : <Page />
+                }
               </ProtectedRoute>
             );
 

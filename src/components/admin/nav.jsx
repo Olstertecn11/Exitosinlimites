@@ -72,7 +72,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <NavItem to="/admin/libros" icon={FiBook}>Libros</NavItem>
         <NavItem to="/admin/ventas" icon={FiDollarSign}>Ventas</NavItem>
         <Spacer h="10" />
-        <NavItem to="/login" icon={FiLogOut} color="red.500" onClick={handleLogout}>Cerrar Sesión</NavItem>
+        <NavItem icon={FiLogOut} color="red.500" onClick={handleLogout}>Cerrar Sesión</NavItem>
       </VStack>
     </Box>
   );

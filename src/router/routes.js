@@ -22,7 +22,7 @@ const routes = {
     { path: '/contacto', element: Contact, default: true, navInside: true },
   ],
   private: [
-    { path: '/admin/login', element: GlassLogin, default: true, navInside: true },
+    { path: '/admin/login', element: GlassLogin, default: true, navInside: false },
     { path: '/admin/eventos', element: EventManager, default: true, navInside: true },
     { path: '/admin/inscripciones', element: Contact, default: true, navInside: true },
     { path: '/admin/libros', element: BooksManager, default: true, navInside: true },
