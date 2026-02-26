@@ -146,7 +146,7 @@ export default function Navbar() {
             Eventos
           </Text>
           <Text onClick={() => redirect("/libros")} {...linkStyle}>
-            Libros
+            Tienda
           </Text>
           <Text onClick={() => redirect("/contacto")} {...linkStyle}>
             Contacto
@@ -293,7 +293,7 @@ export default function Navbar() {
                   redirect("/libros");
                 }}
               >
-                Libros
+                Tienda
               </Button>
 
               <Button
@@ -305,7 +305,7 @@ export default function Navbar() {
                   redirect("/eventos");
                 }}
               >
-                Libros
+                Eventos
               </Button>
 
               <Button
