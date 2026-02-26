@@ -9,6 +9,8 @@ import GlassLogin from '../pages/admin/Login';
 import EventManager from '../pages/admin/EventManager';
 import BooksManager from '../pages/admin/BooksManager';
 import Sales from '../pages/admin/Sales'
+import Books from '../pages/Books';
+import Events from '../pages/Events';
 
 
 
@@ -20,6 +22,8 @@ const routes = {
     { path: '/servicios/entrenamiento-personal', element: PersonalTrainingService, default: true, navInside: true },
     { path: '/servicios/motivacion&liderazgo', element: MotivationLeadership, default: true, navInside: true },
     { path: '/contacto', element: Contact, default: true, navInside: true },
+    { path: '/libros', element: Books, default: true, navInside: true },
+    { path: '/eventos', element: Events, default: true, navInside: true },
   ],
   private: [
     { path: '/admin/login', element: GlassLogin, default: true, navInside: false },

@@ -142,8 +142,11 @@ export default function Navbar() {
               </MenuItem>
             </MenuList>
           </Menu>
-          <Text onClick={() => redirect("/contacto")} {...linkStyle}>
+          <Text onClick={() => redirect("/eventos")} {...linkStyle}>
             Eventos
+          </Text>
+          <Text onClick={() => redirect("/libros")} {...linkStyle}>
+            Libros
           </Text>
           <Text onClick={() => redirect("/contacto")} {...linkStyle}>
             Contacto
@@ -280,6 +283,30 @@ export default function Navbar() {
                   </Button>
                 </Box>
               </Collapse>
+
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                color="white"
+                onClick={() => {
+                  mobile.onClose();
+                  redirect("/libros");
+                }}
+              >
+                Libros
+              </Button>
+
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                color="white"
+                onClick={() => {
+                  mobile.onClose();
+                  redirect("/eventos");
+                }}
+              >
+                Libros
+              </Button>
 
               <Button
                 variant="ghost"
