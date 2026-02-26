@@ -101,7 +101,7 @@ export default function GlassLogin() {
                   value={formData.email} // ✅ controlado
                   onChange={(e) => handleChange(e, setFormData)}
                   bg="rgba(0,0,0,0.05)"
-                  _focus={{ bg: "white", borderColor: "blue.400" }}
+                  _focus={{ bg: "#0000003d", borderColor: "blue.400" }}
                 />
               </InputGroup>
 
@@ -117,7 +117,7 @@ export default function GlassLogin() {
                   onChange={(e) => handleChange(e, setFormData)}
                   variant="filled"
                   bg="rgba(0,0,0,0.05)"
-                  _focus={{ bg: "white", borderColor: "blue.400" }}
+                  _focus={{ bg: "#0000003d", borderColor: "blue.400" }}
                 />
                 <InputRightElement h="full">
                   <Button
